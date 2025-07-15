@@ -24,6 +24,7 @@ coverage/
 .parcel-cache
 .eslintcache
 .stylelintcache
+.biome-cache
 
 # Build tool cache
 .rpt2_cache/

@@ -1,64 +1,65 @@
 {
-	"name": "create-custom-context",
-	"version": "0.0.1",
-	"description": "Create custom context",
-	"type": "module",
-	"sideEffects": false,
-	"files": [
-		"dist",
-		"src"
-	],
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"source": "src/index.ts",
-	"exports": {
-		"./package.json": "./package.json",
-		".": {
-			"import": {
-				"types": "./dist/index.d.ts",
-				"default": "./dist/index.js"
-			}
-		}
-	},
-	"keywords": [
-		"react",
-		"context",
-		"custom",
-		"create"
-	],
-	"scripts": {
-		"build": "pnpm run check && tsup",
-		"dev": "tsup --watch",
-		"test": "vitest",
-		"test:watch": "vitest --watch",
-		"type-check": "tsc --noEmit",
-		"lint": "knip",
-		"check": "pnpm run type-check && pnpm run lint",
-		"prepublishOnly": "pnpm run check && pnpm run test && pnpm run build"
-	},
-	"homepage": "https://github.com/ChenHaoJie9527/create-custom-context",
-	"author": {
-		"name": "ChenHaoJie9527",
-		"url": "https://github.com/ChenHaoJie9527"
-	},
-	"license": "MIT",
-	"engines": {
-		"node": ">=20"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"devDependencies": {
-		"@types/node": "^24.0.13",
-		"@types/react": "^19.1.8",
-		"jsdom": "^26.0.0",
-		"knip": "^5.61.3",
-		"tsup": "^8.5.0",
-		"typescript": "^5.8.3",
-		"vitest": "^3.2.4"
-	},
-	"dependencies": {
-		"react": "^19.1.0"
-	}
+  "name": "create-custom-context",
+  "version": "0.0.1",
+  "description": "Create custom context",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "keywords": [
+    "react",
+    "context",
+    "custom",
+    "create"
+  ],
+  "scripts": {
+    "build": "pnpm check && tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "format": "biome check --write --unsafe .",
+    "lint": "knip",
+    "check": "tsc --noEmit && knip && biome check .",
+    "prepublishOnly": "pnpm check && pnpm test && pnpm build"
+  },
+  "homepage": "https://github.com/ChenHaoJie9527/create-custom-context",
+  "author": {
+    "name": "ChenHaoJie9527",
+    "url": "https://github.com/ChenHaoJie9527"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.1",
+    "@types/node": "^24.0.13",
+    "@types/react": "^19.1.8",
+    "jsdom": "^26.0.0",
+    "knip": "^5.61.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "ultracite": "5.0.36",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0"
+  }
 }
