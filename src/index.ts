@@ -1,1 +1,1 @@
-export { createCustomContext } from './create-custom-context';
+export * from './create-custom-context';

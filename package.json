@@ -30,7 +30,7 @@
   "scripts": {
     "build": "pnpm check && tsup",
     "dev": "tsup --watch",
-    "test": "vitest",
+    "test": "vitest --watch",
     "format": "biome check --write --unsafe .",
     "lint": "knip",
     "check": "tsc --noEmit && knip && biome check .",
@@ -50,6 +50,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.0.13",
     "@types/react": "^19.1.8",
     "jsdom": "^26.0.0",

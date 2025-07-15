@@ -20,8 +20,9 @@
     "declarationMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+  "include": ["src/**/*", "vitest.setup.ts"],
+  "exclude": ["node_modules", "dist"]
 }
