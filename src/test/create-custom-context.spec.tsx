@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createCustomContext } from '../create-custom-context';
 
@@ -62,5 +62,36 @@ describe('createCustomContext', () => {
 
     expect(() => render(<TestComponent />)).toThrow();
     consoleSpy.mockRestore();
+  });
+
+  it('should work with useEffect and event listeners', () => {
+    const [Provider, useHotkeyContext] = createCustomContext(() => {
+      const [pressed, setPressed] = useState<string | null>(null);
+      useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+          setPressed(e.code);
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+      }, []);
+      return {
+        pressed,
+      };
+    });
+
+    function HotkeyDisplay() {
+      const { pressed } = useHotkeyContext();
+      return <div data-testid="pressed">{pressed || 'none'}</div>;
+    }
+
+    render(
+      <Provider>
+        <HotkeyDisplay />
+      </Provider>
+    );
+
+    expect(screen.getByTestId('pressed')).toHaveTextContent('none');
+    fireEvent.keyDown(document, { code: 'KeyA' });
+    expect(screen.getByTestId('pressed')).toHaveTextContent('KeyA');
   });
 });
