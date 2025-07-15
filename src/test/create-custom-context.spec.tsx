@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useState } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createCustomContext } from '../create-custom-context';
 
 describe('createCustomContext', () => {
@@ -47,5 +47,20 @@ describe('createCustomContext', () => {
     expect(screen.getByTestId('count')).toHaveTextContent('0');
     fireEvent.click(screen.getByText('Increment'));
     expect(screen.getByTestId('count')).toHaveTextContent('1');
+  });
+
+  it('should throw error when used outside provider', () => {
+    const [, useContext] = createCustomContext(() => 'test');
+
+    function TestComponent() {
+      useContext();
+      return <div>test</div>;
+    }
+    const consoleSpy = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => ({}));
+
+    expect(() => render(<TestComponent />)).toThrow();
+    consoleSpy.mockRestore();
   });
 });
