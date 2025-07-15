@@ -1,0 +1,14 @@
+{
+  "entry": ["src/index.ts"],
+  "project": ["src/**/*.ts", "src/**/*.tsx"],
+  "ignore": ["dist/**", "node_modules/**"],
+  "ignoreBinaries": ["pnpm"],
+  "ignoreDependencies": ["@types/node", "@types/react", "jsdom"],
+  "tsup": {
+    "config": ["tsup.config.ts"],
+    "entry": ["src/index.ts"]
+  },
+  "vitest": {
+    "config": ["vitest.config.ts"]
+  }
+} 
