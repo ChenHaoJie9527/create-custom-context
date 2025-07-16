@@ -1,8 +1,10 @@
+import { fireEvent, render, screen } from '@testing-library/react';
 import { useEffect, useState } from 'react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createCustomContext } from '../create-custom-context';
 
 // Example of a game weapon system
-const [_GameProvider, _useGameHotkeys] = createCustomContext(() => {
+const [GameProvider, useGameHotkeys] = createCustomContext(() => {
   const [_currentWeapon, setCurrentWeapon] = useState(0);
   const [_combo, setCombo] = useState<string[]>([]);
 
@@ -34,4 +36,45 @@ const [_GameProvider, _useGameHotkeys] = createCustomContext(() => {
     combo: _combo,
     clearCombo: () => setCombo([]),
   };
+});
+
+function GameUI() {
+  const { combo, clearCombo, weaponName } = useGameHotkeys();
+  return (
+    <div>
+      <div data-testid="weapon">Current Weapon: {weaponName}</div>
+      <div data-testid="combo">Combo: {combo.length}</div>
+      <button onClick={clearCombo} type="button">
+        Clear Combo
+      </button>
+    </div>
+  );
+}
+
+describe('Game Hotkeys System', () => {
+  // Call the function before each test run
+  beforeEach(() => {
+    document.removeEventListener('keydown', () => ({}));
+  });
+  // Call the function after each test run
+  afterEach(() => {
+    document.removeEventListener('keydown', () => ({}));
+  });
+  it('should switch weapons with number keys', () => {
+    render(
+      <GameProvider>
+        <GameUI />
+      </GameProvider>
+    );
+
+    expect(screen.getByTestId('weapon')).toHaveTextContent('Sword');
+    fireEvent.keyDown(document, {
+      code: 'Digit2',
+    });
+    expect(screen.getByTestId('weapon')).toHaveTextContent('Bow');
+    fireEvent.keyDown(document, {
+      code: 'Digit3',
+    });
+    expect(screen.getByTestId('weapon')).toHaveTextContent('Magic Staff');
+  });
 });
