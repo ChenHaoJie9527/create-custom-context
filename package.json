@@ -5,9 +5,7 @@
   "type": "module",
   "sideEffects": false,
   "files": [
-    "dist",
-    "src/index.ts",
-    "src/create-custom-context.tsx"
+    "dist"
   ],
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,28 +27,15 @@
     "create"
   ],
   "scripts": {
-    "build": "pnpm check && tsup",
-    "dev": "tsup --watch",
+    "build": "tsup",
     "test": "vitest run",
-    "test:watch": "vitest --watch",
-    "test:coverage": "vitest run --coverage",
-    "format": "biome check --write --unsafe .",
-    "lint": "knip",
     "check": "tsc --noEmit && knip && biome check .",
     "prepublishOnly": "pnpm check && pnpm test && pnpm build"
   },
   "homepage": "https://github.com/ChenHaoJie9527/create-custom-context",
-  "author": {
-    "name": "ChenHaoJie9527",
-    "url": "https://github.com/ChenHaoJie9527"
-  },
+  "author": "ChenHaoJie9527",
   "license": "MIT",
-  "engines": {
-    "node": ">=20"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
+
   "devDependencies": {
     "@biomejs/biome": "2.1.1",
     "@testing-library/jest-dom": "^6.6.3",
