@@ -1,7 +1,7 @@
 {
   "name": "create-custom-context",
   "version": "0.0.1",
-  "description": "Create custom context",
+  "description": "A React Context hook factory that enables using React hooks within context value functions. Perfect for game development, state management, and complex interactive applications with TypeScript support.",
   "type": "module",
   "sideEffects": false,
   "files": [
