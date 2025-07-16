@@ -1,6 +1,7 @@
 {
   "project": ["src/**/*.tsx"],
-  "ignore": ["dist/**", "node_modules/**"],
+  "ignore": ["dist/**", "node_modules/**", "src/test/**"],
+  "ignoreDependencies": ["@testing-library/user-event"],
   "tsup": {
     "config": ["tsup.config.ts"],
     "entry": ["src/index.ts"]
