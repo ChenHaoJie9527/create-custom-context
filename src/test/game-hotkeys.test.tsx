@@ -77,4 +77,21 @@ describe('Game Hotkeys System', () => {
     });
     expect(screen.getByTestId('weapon')).toHaveTextContent('Magic Staff');
   });
+
+  it('should track combo attacks', () => {
+    render(
+      <GameProvider>
+        <GameUI />
+      </GameProvider>
+    );
+
+    expect(screen.getByTestId('combo')).toHaveTextContent('0');
+    fireEvent.keyDown(document, { code: 'Space' });
+    fireEvent.keyDown(document, { code: 'Space' });
+    fireEvent.keyDown(document, { code: 'Space' });
+    expect(screen.getByTestId('combo')).toHaveTextContent('3');
+
+    fireEvent.click(screen.getByText('Clear Combo'));
+    expect(screen.getByTestId('combo')).toHaveTextContent('0');
+  });
 });
