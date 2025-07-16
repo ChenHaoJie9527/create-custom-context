@@ -162,10 +162,10 @@ The library includes comprehensive tests using Vitest and React Testing Library:
 pnpm test
 
 # Run tests in watch mode
-pnpm test --watch
+pnpm test:watch
 
 # Run tests with coverage
-pnpm test --coverage
+pnpm test:coverage
 ```
 
 ## 📁 Project Structure
